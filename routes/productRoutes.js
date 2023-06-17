@@ -15,7 +15,7 @@ const {getSingleProductReviews} = require('../controllers/reviewController')
 
 router
 .route('/')
-.post(authenticateUser, createProduct).get([authenticateUser],getAllProducts)
+.post(authenticateUser, createProduct).get(getAllProducts)
 router.route('/uploadImage')
 .post([authenticateUser, authenticatePermissions('admin')],uploadImage)
 router.route('/:id')
