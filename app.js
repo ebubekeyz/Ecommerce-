@@ -35,19 +35,13 @@ app.use(
         max: 60,
     })
 )
-app.use(helmet())
-app.use(xss())
-app.use(mongoSanitize())
+
 app.use(express.json())
 app.use(cookieParser(process.env.JWT_SECRET))
 
 app.use(express.static('./public'))
 app.use(fileUpload())
-const corOptions = {
-    origin: 'https://ecommerce-node-6onb.onrender.com',
-    optionsSuccessStatus: 200
-}
-app.use(cors(corOptions))
+
 
 
 
