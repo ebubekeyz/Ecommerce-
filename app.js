@@ -44,7 +44,7 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 app.use(fileUpload())
 const corOptions = {
-    origin: 'http://localhost/clothing-shop-frontend',
+    origin: 'http://localhost',
     optionsSuccessStatus: 200
 }
 app.use(cors(corOptions))
