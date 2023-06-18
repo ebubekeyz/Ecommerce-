@@ -44,7 +44,7 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 app.use(fileUpload())
 const corOptions = {
-    origin: 'http://localhost',
+    origin: 'https://ecommerce-node-6onb.onrender.com',
     optionsSuccessStatus: 200
 }
 app.use(cors(corOptions))
