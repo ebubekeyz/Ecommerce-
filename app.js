@@ -35,13 +35,15 @@ app.use(
         max: 60,
     })
 )
-
+app.use(helmet())
+app.use(xss())
+app.use(mongoSanitize())
 app.use(express.json())
 app.use(cookieParser(process.env.JWT_SECRET))
 
 app.use(express.static('./public'))
 app.use(fileUpload())
-
+app.use(cors())
 
 
 
