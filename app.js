@@ -43,7 +43,11 @@ app.use(cookieParser(process.env.JWT_SECRET))
 
 app.use(express.static('./public'))
 app.use(fileUpload())
-app.use(cors())
+const corsOptions = {
+    origin: 'http://localhost',
+    credentials: true
+}
+app.use(cors(corsOptions))
 
 
 
