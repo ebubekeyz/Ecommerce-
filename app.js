@@ -45,7 +45,7 @@ app.use(express.static('./public'))
 app.use(fileUpload())
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' 
-    ? "http://localhost:4200" 
+    ? "http://localhost" 
     : "http://localhost",
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
