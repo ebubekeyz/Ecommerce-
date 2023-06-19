@@ -44,7 +44,9 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 app.use(fileUpload())
 const corsOptions = {
-    origin: true,
+    origin: process.env.NODE_ENV === 'production' 
+    ? "http://localhost:4200" 
+    : "http://localhost",
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
     withCredentials: true
