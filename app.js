@@ -35,7 +35,15 @@ app.use(
         max: 60,
     })
 )
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "script-src": 
+        ["'self'", "https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"],
+        "img-src": ["'self'", "data: https:"]
+      }
+    }
+  }));
 app.use(xss())
 app.use(mongoSanitize())
 app.use(express.json())
@@ -44,7 +52,7 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 app.use(fileUpload())
 const corsOptions = {
-    origin: 'https://ecommerce-node-6onb.onrender.com',
+    origin: 'http://localhost',
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true
 }
