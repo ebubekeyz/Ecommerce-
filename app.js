@@ -38,7 +38,7 @@ app.use(xss());
 app.use(mongoSanitize());
 app.use(express.json());
 const corsOptions = {
-  origin: true,
+  origin: 'http://localhost',
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true,
 };
