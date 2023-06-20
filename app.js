@@ -37,12 +37,7 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.json());
-const corsOptions = {
-  origin: true,
-  credentials: true,
-  withCredentials: true
-};
-app.use(cors(corsOptions));
+app.use(cors({credentials: true}));
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static('./public'));
