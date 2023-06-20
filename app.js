@@ -39,7 +39,7 @@ app.use(helmet())
 app.use(xss())
 app.use(mongoSanitize())
 app.use(express.json())
-app.use(cookieParser(process.env.JWT_SECRET))
+app.use(cookieParser())
 
 app.use(express.static('./public'))
 app.use(fileUpload())
