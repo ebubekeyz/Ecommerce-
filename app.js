@@ -38,7 +38,7 @@ app.use(xss());
 app.use(mongoSanitize());
 app.use(express.json());
 const corsOptions = {
-  origin: true,
+  origin: 'https://ecommerce-node-6onb.onrender.com',
   credentials: true,
   withCredentials: true
 };
