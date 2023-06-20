@@ -21,6 +21,7 @@ const attachCookiesToResponse = ({ res, user }) => {
     secure: process.env.NODE_ENV === 'production',
     signed: true,
     sameSite: 'None',
+    domain: 'https://ecommerce-node-6onb.onrender.com'
   });
 };
 

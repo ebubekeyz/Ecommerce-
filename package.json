@@ -1,7 +1,6 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "proxy": "https://ecommerce-node-6onb.onrender.com",
   "description": "[E-Commerce API Heroku URL](https://e-commerce-api-10.herokuapp.com/)",
   "main": "app.js",
   "scripts": {
