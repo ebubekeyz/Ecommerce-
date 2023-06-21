@@ -101,11 +101,21 @@ const updateOrder = async(req, res) => {
 
     
 }
+const deleteOrder = async(req, res) => {
+    const {id:orderId} = req.params
+    const order = await Order.findByIdAndRemove({_id:orderId})
+
+    if(!order){
+        throw new CustomError.BadRequestError(`No order with id ${orderId}`)
+    }
+    res.status(StatusCodes.OK).json({msg: 'Order deleted Successfully'})
+}
 
 module.exports = {
     getAllOrders,
     getSingleOrder,
     getCurrentUserOrders,
     createOrder,
-    updateOrder
+    updateOrder,
+    deleteOrder
 }

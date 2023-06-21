@@ -1,5 +1,16 @@
 const mongoose = require('mongoose')
 
+
+const ProductDescriptionSchema = mongoose.Schema({
+    modelName: { type: String, required: true },
+    quality: { type: String, required: true },
+    material: { type: String, required: true },
+    boxContent: { type: String, required: true },
+    feature: { type: String, required: true },
+    weight: { type: String, required: true },
+    size: { type: String, required: true },
+})
+
 const ProductSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -12,25 +23,21 @@ const ProductSchema = new mongoose.Schema({
         required: [true, 'Please provide product price'],
         default: 0,
     },
-    description: {
-        type: String,
-        required: [true, 'Please provide product price'],
-        maxlength: [1000, 'Description can not be more than 1000 characters'],
-    },
+    description: [ProductDescriptionSchema],
     image: {
         type: String,
         default: '/uploads/example.jpeg',
     },
     category: {
         type: String,
-        required: [true, 'Please provude product category'],
-        enum: ['office', 'kitchen', 'bedroom'],
+        required: [true, 'Please provide product category'],
+        enum: ['men', 'women'],
     },
     company: {
         type: String,
         required: [true, 'Please provude company'],
         enum: {
-            values: ['ikea', 'liddy', 'marcos'],
+            values: ['shirt', 'trouser', 'gown'],
             message: '{VALUE} is not supported',
         },
     },

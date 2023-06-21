@@ -9,11 +9,13 @@ const {
     getSingleOrder,
     getCurrentUserOrders,
     createOrder,
-    updateOrder
+    updateOrder,
+    deleteOrder
 } = require('../controllers/orderController')
 
 router.route('/').get([authenticateUser, authenticatePermissions('admin')], getAllOrders).post(authenticateUser, createOrder)
 router.route('/showAllMyOrders').get(authenticateUser, getCurrentUserOrders)
-router.route('/:id').get(authenticateUser, getSingleOrder).patch(authenticateUser, updateOrder)
+router.route('/:id').get(authenticateUser, getSingleOrder).patch(authenticateUser, updateOrder).delete([authenticateUser, authenticatePermissions('admin')], deleteOrder)
+
 
 module.exports = router
