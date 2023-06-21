@@ -8,7 +8,8 @@ const {
     getAllProducts, 
     updateProduct, 
     deleteProduct, 
-    uploadImage
+    uploadImage,
+    uploadImageCloud
 } = require('../controllers/productController')
 
 const {getSingleProductReviews} = require('../controllers/reviewController')
@@ -18,6 +19,7 @@ router
 .post(authenticateUser, createProduct).get([authenticateUser], getAllProducts)
 router.route('/uploadImage')
 .post([authenticateUser, authenticatePermissions('admin')],uploadImage)
+router.route('/uploadImageCloud').post([authenticateUser, authenticatePermissions('admin')],uploadImageCloud)
 router.route('/:id')
 .get(getSingleProduct)
 .patch([authenticateUser, authenticatePermissions('admin')],updateProduct)

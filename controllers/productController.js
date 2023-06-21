@@ -2,6 +2,8 @@ const Product = require('../models/Product')
 const {StatusCodes} = require('http-status-codes')
 const CustomError = require('../errors')
 const path = require('path')
+const cloudinary = require('cloudinary').v2
+const fs = require('fs')
 
 
 const createProduct = async(req, res) => {
@@ -75,11 +77,24 @@ const uploadImage = async(req, res) => {
     
 }
 
+const uploadImageCloud = async(req, res) => {
+    console.log(req.files)
+    const result = await cloudinary.uploader.upload(
+        req.files.images.tempFilePath, {
+            use_filename: true, folder: 'ecommerce',
+        }
+    )
+    console.log(result)
+    fs.unlinkSync(req.files.images.tempFilePath)
+    return res.status(StatusCodes.OK).json({image: {src: result.secure_url}})
+}
+
 module.exports = {
     createProduct, 
     getSingleProduct, 
     getAllProducts, 
     updateProduct, 
     deleteProduct, 
-    uploadImage
+    uploadImage,
+    uploadImageCloud
 }

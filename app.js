@@ -22,6 +22,12 @@ const mongoSanitize = require('express-mongo-sanitize');
 
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_SECRET
+})
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -40,7 +46,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static('./public'));
-app.use(fileUpload());
+app.use(fileUpload({ useTempFiles: true }));
 
 app.use(cors({credentials: true}));
 app.use('/api/v1/auth', authRouter);
