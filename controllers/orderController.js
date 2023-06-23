@@ -32,13 +32,12 @@ const getCurrentUserOrders = async(req, res) => {
 }
 
 const createOrder = async(req, res) => {
-    const {items: cartItems, tax, shippingFee} = req.body
+    let {items: cartItems, tax, shippingFee} = req.body
     if(!cartItems || cartItems.length < 1){
         throw new CustomError.BadRequestError('No cart items provided')
     }
-    if(!tax || !shippingFee){
-        throw new CustomError.BadRequestError('Please provide tax and shipping fee')
-    }
+
+    shippingFee = 50;
     
     let orderItems = []
     let subtotal = 0
@@ -62,7 +61,7 @@ const createOrder = async(req, res) => {
         //calculate subtotal
         subtotal += item.amount * price
     }
-
+    tax = Math.ceil(subtotal * 2/100);
     //calculate total
     const total = tax + shippingFee + subtotal
 
@@ -73,7 +72,7 @@ const createOrder = async(req, res) => {
     })
 
     const order = await Order.create({
-        orderItems, total, subtotal, tax, shippingFee, clientSecret:paymentIntent.client_secret, user:req.user.userId
+        orderItems, total, subtotal, clientSecret:paymentIntent.client_secret, tax, shippingFee,  user:req.user.userId
     })
 
     res.status(StatusCodes.CREATED).json({order, clientSecret: order.client_secret})

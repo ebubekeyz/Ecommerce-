@@ -11,11 +11,9 @@ const SingleOrderItemSchema = mongoose.Schema({
 const OrderSchema = new mongoose.Schema({
     tax: {
         type: Number,
-        required: true
     },
     shippingFee: {
         type: Number,
-        required: true
     },
     subtotal: {
         type: Number,
