@@ -10,7 +10,10 @@ const fakeStripeAPI = async ({amount, currency}) => {
 }
 
 const getAllOrders = async(req, res) => {
-    const orders = await Order.find({})
+    const orders = await Order.find({}).populate({
+        path: 'user',
+        select: 'name',
+    })
     res.status(StatusCodes.OK).json({orders, count: orders.length})
     
 }
