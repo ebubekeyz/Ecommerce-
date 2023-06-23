@@ -3,6 +3,7 @@ const Product = require('../models/Product')
 const {StatusCodes} = require('http-status-codes')
 const {checkPermissions} = require('../utils')
 const CustomError = require('../errors')
+const User = require('../models/User')
 
 const fakeStripeAPI = async ({amount, currency}) => {
     const client_secret = 'someRandomValue'
@@ -113,11 +114,12 @@ const deleteOrder = async(req, res) => {
     res.status(StatusCodes.OK).json({msg: 'Order deleted Successfully'})
 }
 
+
 module.exports = {
     getAllOrders,
     getSingleOrder,
     getCurrentUserOrders,
     createOrder,
     updateOrder,
-    deleteOrder
+    deleteOrder,
 }

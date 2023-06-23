@@ -54,4 +54,9 @@ const deleteAddress = async(req, res) => {
     res.status(StatusCodes.OK).json({msg: 'address successfully deleted'})
 }
 
-module.exports = {createAddress, getAllAddress, getSingleAddress, updateAddress, deleteAddress}
+const getSingleUserAddress = async (req, res) => {
+    const address = await Address.find({user: req.user.userId})
+    res.status(StatusCodes.OK).json({address, count: address.length})
+}
+
+module.exports = {createAddress, getAllAddress, getSingleAddress, updateAddress, deleteAddress, getSingleUserAddress}
