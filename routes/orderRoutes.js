@@ -13,9 +13,9 @@ const {
     deleteOrder
 } = require('../controllers/orderController')
 
-router.route('/').get([authenticateUser, authenticatePermissions('admin')], getAllOrders).post(authenticateUser, createOrder)
-router.route('/showAllMyOrders').get(authenticateUser, getCurrentUserOrders)
-router.route('/:id').get(authenticateUser, getSingleOrder).patch(authenticateUser, updateOrder).delete([authenticateUser, authenticatePermissions('admin')], deleteOrder)
+router.route('/').get([authenticateUser], getAllOrders).post(authenticateUser, createOrder)
+router.route('/showAllMyOrders').get([authenticateUser], getCurrentUserOrders)
+router.route('/:id').get(authenticateUser, getSingleOrder).patch(authenticateUser, updateOrder).delete([authenticateUser], deleteOrder)
 
 
 module.exports = router
