@@ -115,6 +115,13 @@ const deleteOrder = async(req, res) => {
 }
 
 
+const getUserOrder = async (req, res) => {
+    const {id:userId} = req.params
+    const orders = await Order.find({user: userId})
+    res.status(StatusCodes.OK).json({orders, count: orders.length})
+}
+
+
 module.exports = {
     getAllOrders,
     getSingleOrder,
@@ -122,4 +129,5 @@ module.exports = {
     createOrder,
     updateOrder,
     deleteOrder,
+    getUserOrder
 }
