@@ -18,6 +18,12 @@ const getAllProducts = async(req, res) => {
     res.status(StatusCodes.OK).json({products, count: products.length})
 }
 
+
+const getFeaturedProducts = async(req, res) => {
+    const products = await Product.find({"featured": true}).sort('createdAt')
+    res.status(StatusCodes.OK).json({products, count: products.length})
+}
+
 const getSingleProduct = async (req, res) => {
     const {id: productId} = req.params
     const product = await Product.findOne({_id: productId})
@@ -96,5 +102,6 @@ module.exports = {
     updateProduct, 
     deleteProduct, 
     uploadImage,
-    uploadImageCloud
+    uploadImageCloud,
+    getFeaturedProducts
 }

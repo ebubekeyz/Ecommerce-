@@ -9,11 +9,13 @@ const {
     updateProduct, 
     deleteProduct, 
     uploadImage,
-    uploadImageCloud
+    uploadImageCloud,
+    getFeaturedProducts
 } = require('../controllers/productController')
 
 const {getSingleProductReviews} = require('../controllers/reviewController')
 
+router.route('/featured').get(getFeaturedProducts)
 router
 .route('/')
 .post(authenticateUser, createProduct).get([authenticateUser], getAllProducts)
